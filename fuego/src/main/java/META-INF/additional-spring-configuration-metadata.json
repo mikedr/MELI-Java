@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "satellite.position.x.skywalker",
+    "type": "java.lang.String",
+    "description": "A description for 'satellite.position.x.skywalker'"
+  },
+  {
+    "name": "satellite.position.x.kenobi",
+    "type": "java.lang.String",
+    "description": "A description for 'satellite.position.x.kenobi'"
+  },
+  {
+    "name": "satellite.position.y.kenobi",
+    "type": "java.lang.String",
+    "description": "A description for 'satellite.position.y.kenobi'"
+  },
+  {
+    "name": "satellite.position.y.skywalker",
+    "type": "java.lang.String",
+    "description": "A description for 'satellite.position.y.skywalker'"
+  },
+  {
+    "name": "satellite.position.x.sato",
+    "type": "java.lang.String",
+    "description": "A description for 'satellite.position.x.sato'"
+  },
+  {
+    "name": "satellite.position.y.sato",
+    "type": "java.lang.String",
+    "description": "A description for 'satellite.position.y.sato'"
+  }
+]}
