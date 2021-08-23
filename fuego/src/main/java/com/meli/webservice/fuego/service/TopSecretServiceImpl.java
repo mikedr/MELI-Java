@@ -25,7 +25,7 @@ public class TopSecretServiceImpl implements TopSecretService{
 	
 	@Value("${satellite.position.y.sato}")
 	float yPositionSato;
-
+	
 	@Override
 	public float[] getLocation(float... distances) {
 		float[] enemyPosition = new float[2];

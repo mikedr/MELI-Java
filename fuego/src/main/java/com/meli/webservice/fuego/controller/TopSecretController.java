@@ -1,6 +1,7 @@
 package com.meli.webservice.fuego.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,9 @@ public class TopSecretController {
 	@Autowired
 	TopSecretService topSecretSplitService; 
 	
+	@Value("${message.position.fail}")
+	String positionNotFound;	
+	
 	@RequestMapping(method = RequestMethod.POST, path = "/topsecret/")
 	public Position topSecretSplit(@RequestBody Satellites satellites) {
 		Satellite[] allSatellites = satellites.getSatellites();
@@ -25,7 +29,7 @@ public class TopSecretController {
 		if(isValidPosition) {
 			return new Position(xy[0], xy[1], topSecretSplitService.getMessage(allSatellites[0].getMessage(),allSatellites[1].getMessage(),allSatellites[2].getMessage()));	
 		} else {
-			throw new PositionNotCalculedException("Position not calculated");
+			throw new PositionNotCalculedException(positionNotFound);
 		}
 		
 	}
