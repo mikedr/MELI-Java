@@ -6,6 +6,13 @@ public class Satellite {
 	private float distance;
 	private String[] message;
 	
+	public Satellite(String name, float distance, String[] message) {
+		super();
+		this.name = name;
+		this.distance = distance;
+		this.message = message;
+	}
+	
 	public String getName() {
 		return name;
 	}

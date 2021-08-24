@@ -73,11 +73,11 @@ public class TopSecretServiceImpl implements TopSecretService{
 		float distanceSkywaler = satellites.getSatellites()[1].getDistance();
 		float distanceSato = satellites.getSatellites()[2].getDistance();
 		float dist1 = (float) Math.sqrt((float) (Math.pow(x-xPositionKenobi, 2))+(float) (Math.pow(y-yPositionKenobi, 2)));
-		boolean firstVal = (dist1-distanceKenobi)<=1;
+		boolean firstVal = Math.round(dist1) == Math.round(distanceKenobi);
 		float dist2 = (float) Math.sqrt((float) (Math.pow(x-xPositionSkywalker, 2))+(float) (Math.pow(y-yPositionSkywalker, 2)));
-		boolean secondVal = (dist2-distanceSkywaler)<=1;
+		boolean secondVal = Math.round(dist2) == Math.round(distanceSkywaler);
 		float dist3 = (float) Math.sqrt((float) (Math.pow(x-xPositionSato, 2))+(float) (Math.pow(y-yPositionSato, 2)));
-		boolean thirdVal = (dist3-distanceSato)<=1;
+		boolean thirdVal = Math.round(dist3) == Math.round(distanceSato);
 		return firstVal&&secondVal&&thirdVal;
 	}
 

@@ -16,20 +16,20 @@ import com.meli.webservice.fuego.service.TopSecretService;
 public class TopSecretController {
 	
 	@Autowired
-	TopSecretService topSecretSplitService; 
+	TopSecretService topSecretService; 
 	
-	@Value("${message.position.fail}")
-	String positionNotFound;	
+	@Value("${message.position.fail.parameters}")
+	String positionNotCalculatedWrongParameters;	
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/topsecret/")
 	public Position topSecretSplit(@RequestBody Satellites satellites) {
 		Satellite[] allSatellites = satellites.getSatellites();
-		float[] xy = topSecretSplitService.getLocation(allSatellites[0].getDistance(),allSatellites[1].getDistance(),allSatellites[2].getDistance());
-		boolean isValidPosition = topSecretSplitService.positionValidator(satellites, xy[0], xy[1]);
+		float[] xy = topSecretService.getLocation(allSatellites[0].getDistance(),allSatellites[1].getDistance(),allSatellites[2].getDistance());
+		boolean isValidPosition = topSecretService.positionValidator(satellites, xy[0], xy[1]);
 		if(isValidPosition) {
-			return new Position(xy[0], xy[1], topSecretSplitService.getMessage(allSatellites[0].getMessage(),allSatellites[1].getMessage(),allSatellites[2].getMessage()));	
+			return new Position(xy[0], xy[1], topSecretService.getMessage(allSatellites[0].getMessage(),allSatellites[1].getMessage(),allSatellites[2].getMessage()));	
 		} else {
-			throw new PositionNotCalculedException(positionNotFound);
+			throw new PositionNotCalculedException(positionNotCalculatedWrongParameters);
 		}
 		
 	}
