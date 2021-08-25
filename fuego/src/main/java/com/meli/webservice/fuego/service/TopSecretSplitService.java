@@ -18,4 +18,8 @@ public interface TopSecretSplitService {
 	public String[][] getMessagesFromReceivedSatellites();
 	
 	public Satellites getSatellites();
+	
+	public List<Satellite> getAllSatellites();
+	
+	public Satellite getOneSatellite(String name);
 }

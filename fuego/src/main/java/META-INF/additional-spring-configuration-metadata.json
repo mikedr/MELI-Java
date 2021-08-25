@@ -38,5 +38,10 @@
     "name": "message.position.fail.lackSatellites",
     "type": "java.lang.String",
     "description": "A description for 'message.position.fail.lackSatellites'"
+  },
+  {
+    "name": "message.satellite.not.found",
+    "type": "java.lang.String",
+    "description": "A description for 'message.satellite.not.found'"
   }
 ]}

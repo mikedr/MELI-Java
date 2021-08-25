@@ -1,7 +1,13 @@
 package com.meli.webservice.fuego.controller;
 
+import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +36,9 @@ public class TopSecretSplitController {
 	@Value("${message.position.fail.lackSatellites}")
 	String positionNotCalculatedLackSatellites;
 	
+	@Value("${message.satellite.not.found}")
+	String satelliteNotFound;
+	
 	@RequestMapping(method = RequestMethod.POST, path = "/topsecret_split/{name}")
 	public void topSecretSplit(@RequestBody SatelliteSplit satelliteSplit, @PathVariable String name) {
 		topSecretSplitService.receiveOneSatellite(satelliteSplit,name);
@@ -47,6 +56,24 @@ public class TopSecretSplitController {
 			}
 		} else {
 			throw new PositionNotCalculedException(positionNotCalculatedLackSatellites);
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/topsecret_split/all")
+	public List<Satellite> getSatellites() {
+		return topSecretSplitService.getAllSatellites();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/topsecret_split/{name}")
+	public EntityModel<Satellite> getSatellite(@PathVariable String name) {
+		Satellite aSatellite = topSecretSplitService.getOneSatellite(name);
+		if(aSatellite != null) {
+			EntityModel<Satellite> model = EntityModel.of(aSatellite);
+			WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).getSatellites());
+			model.add(linkToUsers.withRel("all-satellites"));
+			return model;
+		} else {
+			throw new PositionNotCalculedException(satelliteNotFound);
 		}
 	}
 }

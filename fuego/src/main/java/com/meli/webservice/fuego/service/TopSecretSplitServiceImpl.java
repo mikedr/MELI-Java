@@ -1,5 +1,7 @@
 package com.meli.webservice.fuego.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.meli.webservice.fuego.model.Satellite;
@@ -36,5 +38,20 @@ public class TopSecretSplitServiceImpl implements TopSecretSplitService{
 		}
 		satellites.setSatellites(allSatellites);
 		return satellites;
+	}
+
+	@Override
+	public List<Satellite> getAllSatellites() {
+		return receivedSatellites;
+	}
+	
+	@Override
+	public Satellite getOneSatellite(String name) {
+		for(Satellite aStatellite : receivedSatellites) {
+			if(aStatellite.getName().equals(name)) {
+				return aStatellite;
+			}
+		}
+		return null;
 	}
 }
