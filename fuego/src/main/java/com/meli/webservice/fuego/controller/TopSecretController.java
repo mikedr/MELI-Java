@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.meli.webservice.fuego.exceptions.PositionNotCalculedException;
 import com.meli.webservice.fuego.model.Position;
 import com.meli.webservice.fuego.model.Satellite;
 import com.meli.webservice.fuego.model.Satellites;
